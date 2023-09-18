@@ -1,0 +1,31 @@
+.home-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+
+    margin-top: 10rem;
+
+    label {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #1d1f21;
+        cursor: pointer;
+        text-transform: uppercase;
+        border-bottom: 0.15em solid rgba(29, 31, 33, 0);
+        border-radius: 1rem;
+        transition: all 0.3s linear;
+        text-align: center;
+        align-items: center;
+        vertical-align: center;
+        width: 200px;
+        height: 37px;
+    }
+
+    label:hover {
+        display: block;
+        border-bottom: 0.15em solid rgba(0, 139, 248, 0.18);
+    }
+}
+
