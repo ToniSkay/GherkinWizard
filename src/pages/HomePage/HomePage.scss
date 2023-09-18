@@ -1,0 +1,14 @@
+.home {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+
+  .description {
+    font-size: 1.5rem;
+    font-weight: 300;
+    width: 50vw;
+  }
+}
