@@ -6,7 +6,7 @@ export function Navigation() {
     <div className="navigation-menu animate__animated animate__fadeInLeft">
       <NavigationLink link="/" name="Home" />
       <NavigationLink link="/all-tasks" name="My Scenarios" />
-      <NavigationLink link="/create-screnario" name="Create Scenario" />
+      <NavigationLink link="/create-scenario" name="Create Scenario" />
     </div>
   );
 }

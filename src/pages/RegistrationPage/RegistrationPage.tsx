@@ -1,12 +1,13 @@
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import { Button, Card, Input } from "antd";
+import {ArrowLeftOutlined} from "@ant-design/icons";
+import {Button, Card, Input} from "antd";
 import "./RegistrationPage.scss";
-import { NavigationLink } from "../../common/components/Navigation/components/NavigationLink/NavigationLink";
+import {NavigationLink} from "../../common/components/Navigation/components/NavigationLink/NavigationLink";
 import axios from "axios";
-import { finalize, from } from "rxjs";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import {finalize, from} from "rxjs";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {v4 as uuidv4} from "uuid";
+import {nanoid} from "nanoid";
 
 export const RegistrationPage = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export const RegistrationPage = () => {
     <div className="registration-page">
       <Card className={"registration-card animate__animated animate__flipInX"}>
         <p className={"backToLogin"}>
-          <ArrowLeftOutlined rev />
+          <ArrowLeftOutlined rev={nanoid()} />
           <NavigationLink link={"/login"} name={"Back to login"} />
         </p>
 

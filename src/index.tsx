@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <BrowserRouter>
+    <>
         <head>
             <link
                 rel="stylesheet"
@@ -24,7 +24,10 @@ root.render(
                 href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             />
         </head>
-        <App />
-    </BrowserRouter>
+
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </>
 );
 

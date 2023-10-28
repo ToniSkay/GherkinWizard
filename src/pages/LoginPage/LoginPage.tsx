@@ -1,10 +1,11 @@
 import "./LoginPage.scss";
-import { Button, Card, Input } from "antd";
-import { NavLink, useNavigate } from "react-router-dom";
+import {Button, Card, Input} from "antd";
+import {NavLink, useNavigate} from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
-import { finalize, from } from "rxjs";
-import { useUserStore } from "../../common/stores/user-store";
+import {useState} from "react";
+import {finalize, from} from "rxjs";
+import {useUserStore} from "../../common/stores/user-store";
+import {environment} from "../../environments/index";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -20,17 +21,26 @@ export const LoginPage = () => {
     setLoading(true);
     from(
       axios.post(
-        "https://localhost:7167/Authentication/authenticate",
+        `${environment.baseApiUrl}Authentication/authenticate`,
         credentials,
       ),
     )
       .pipe(finalize(() => setLoading(false)))
       .subscribe(({ data }) => {
         localStorage.setItem("user", JSON.stringify(data));
+        attachToken();
         setCurrentUser(data);
         navigate("/");
       });
   };
+
+  const attachToken = () => {
+    axios.interceptors.request.use(function (config) {
+      config.headers.Authorization =  JSON.parse(localStorage.getItem("user")).token;
+
+      return config;
+    });
+  }
 
   return (
     <div className="login-page">

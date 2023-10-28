@@ -1,0 +1,64 @@
+.scenario-page {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.5s ease-out;
+    justify-content: center;
+
+    .add-scenario-button {
+      margin-top: 1rem;
+      width: 50%;
+      height: 50px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 .5rem .5rem rgb(178 170 170 / 10%);
+    }
+}
+
+.scenario-common {
+  height: fit-content;
+  max-height: fit-content;
+  width: 50%;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-top: 2%;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 .5rem .5rem rgb(178 170 170 / 10%);
+
+  .scenario-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ant-form-item-row {
+    display: block;
+  }
+
+  .in-progress-status {
+    color: #007BFF;
+    font-weight: bold;
+  }
+
+  .done-status {
+    color: #28A745;
+    font-weight: bold;
+
+    &.ant-radio-button-wrapper-checked {
+      background-color: #28A745;
+      border-color: #28A745;
+
+      &::before {
+        background-color: #28A745;
+      }
+    }
+
+    .ant-radio-button-checked, {
+        background-color: #28A745;
+        border-color: #28A745;
+    }
+  }
+}
