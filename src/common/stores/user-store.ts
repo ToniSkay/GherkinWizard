@@ -1,7 +1,8 @@
-import { create } from "zustand";
+import {create} from "zustand";
 
 export interface UserStore {
   userName: string;
+  systemName: string;
   isAdmin: boolean;
   token: string;
   setUser: (user: { name: string; isAdmin: boolean; token: string }) => void;
@@ -11,6 +12,7 @@ export interface UserStore {
 const user = JSON.parse(localStorage.getItem("user"));
 
 export const useUserStore = create<UserStore>((set) => ({
+  systemName: user?.id || '',
   userName: user?.name || "",
   isAdmin: user?.isAdmin || false,
   token: user?.token || "",

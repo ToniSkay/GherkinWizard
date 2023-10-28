@@ -1,9 +1,10 @@
-import { Avatar, Button, Popover } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import {Avatar, Button, Popover} from "antd";
+import {UserOutlined} from "@ant-design/icons";
 import "./User.scss";
-import { useState } from "react";
-import { useUserStore } from "../../../stores/user-store";
-import { useNavigate } from "react-router-dom";
+import {useState} from "react";
+import {useUserStore} from "../../../stores/user-store";
+import {useNavigate} from "react-router-dom";
+import {nanoid} from "nanoid";
 
 interface IProps {
   userName: string;
@@ -39,7 +40,7 @@ export const User = ({ userName }: IProps) => {
     >
       <div className="user-container animate__animated animate__fadeInRight">
         <div className="user-avatar">
-          <Avatar size={"small"} shape="square" icon={<UserOutlined rev />} />
+          <Avatar size={"small"} shape="square" icon={<UserOutlined rev={nanoid()} />} />
         </div>
         <div className="user-name">{userName}</div>
       </div>

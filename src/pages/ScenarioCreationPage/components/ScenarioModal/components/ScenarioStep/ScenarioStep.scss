@@ -1,0 +1,60 @@
+.scenario-item {
+  display: flex;
+  flex-flow: row nowrap;
+
+  .ant-select .ant-select-selector {
+    width: 5rem;
+  }
+
+  .input-description {
+    width: 100%;
+  }
+
+  .select-type {
+    margin-right: .3rem;
+  }
+
+  .step-form-item {
+    margin-bottom: 1rem;
+  }
+
+  .scenario-delete-button {
+    margin-left: .3rem;
+  }
+}
+
+.scenario-blocks {
+  height: fit-content;
+  transition: height 1s ease-in-out;
+}
+
+.anticon-plus-circle {
+    font-size: 1.5rem;
+    color: #9093988f;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding-left: 1rem;
+    padding-top: .5rem;
+}
+
+.field-item-enter {
+  opacity: 0;
+  height: 0;
+}
+
+.field-item-enter-active {
+  opacity: 1;
+  height: auto;
+  transition: opacity 300ms, height 300ms;
+}
+
+.field-item-exit {
+  opacity: 1;
+  height: auto;
+}
+
+.field-item-exit-active {
+  opacity: 0;
+  height: 0;
+  transition: opacity 300ms, height 700ms;
+}

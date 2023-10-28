@@ -1,0 +1,17 @@
+.ant-form-item-row {
+  display: block;
+}
+
+.ant-modal {
+  width: 90rem;
+
+  .ant-modal-body {
+    height: auto;
+    display: block;
+    max-height: 55rem;
+    min-height: 55rem;
+    overflow: auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
