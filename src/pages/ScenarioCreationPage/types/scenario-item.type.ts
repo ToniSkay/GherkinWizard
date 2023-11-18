@@ -1,6 +1,7 @@
 import {IScenarioStep} from "./scenario-step.type";
 
-export interface IScenario {
+export interface IScenarioItem {
+    id: number;
     systemName: string;
     name: string;
     description: string;

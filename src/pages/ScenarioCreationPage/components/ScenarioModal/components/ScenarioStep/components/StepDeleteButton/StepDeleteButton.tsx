@@ -8,13 +8,6 @@ interface IProps {
 }
 
 export const StepDeleteButton = ({removeStep, index}: IProps) => {
-
-    // const deleteStep = (id: string) => {
-    //     const newSteps = steps.filter((step) => step.systemName !== id);
-    //
-    //     setSteps(newSteps);
-    // }
-
     return (
         <button type="button" onClick={() => removeStep(index)} className="Btn scenario-delete-button">
 

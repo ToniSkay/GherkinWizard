@@ -4,10 +4,10 @@ import {ScenarioStatus} from "../../../../common/enums/scenario-status.enum";
 import "./ScenarioModal.scss";
 import {ScenarioStep} from "./components/ScenarioStep/ScenarioStep";
 import {useFormItemConfigs} from "./hooks/use-form-items-config";
-import {IScenario} from "../../types/scenario.type";
 import {customAlphabet, nanoid} from "nanoid";
 import {IScenarioStep} from "../../types/scenario-step.type";
 import {useScenarioCreationStore} from "../../store/scenario-creation-store";
+import {IScenarioItem} from "../../types/scenario-item.type";
 
 const SCENARIO_FORM_ID = 'scenario-form-id';
 
@@ -17,7 +17,7 @@ export const ScenarioModal = () => {
 
     const {setScenarioItems, isModalOpen, setIsModalOpen} = useScenarioCreationStore((state) => state);
 
-    const { scenarioInfoConfig} = useFormItemConfigs({} as IScenario);
+    const { scenarioInfoConfig} = useFormItemConfigs({} as IScenarioItem);
     const [stepsForm] = Form.useForm();
     const [form] = Form.useForm();
 

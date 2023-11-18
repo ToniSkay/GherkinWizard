@@ -5,7 +5,7 @@ import App from './App';
 import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root')
 );
 
 root.render(
@@ -23,6 +23,7 @@ root.render(
                 rel="stylesheet"
                 href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             />
+            <title></title>
         </head>
 
         <BrowserRouter>
@@ -31,3 +32,9 @@ root.render(
     </>
 );
 
+const devMode = true;
+// @ts-ignore
+if (devMode && module && module.hot) {
+    // @ts-ignore
+    module.hot.accept();
+}
