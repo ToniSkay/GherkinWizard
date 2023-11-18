@@ -1,13 +1,15 @@
+@import "styles/colors";
+
 .card {
   cursor: pointer;
-  width: 200px;
-  height: 254px;
+  width: 13rem;
+  height: 18rem;
   border-radius: 20px;
   background: rgba(245, 245, 245, 0.01);
   position: relative;
-  padding: 1.8rem;
+  padding: 7rem;
   margin: 1rem 2rem;
-  border: 2px solid rgb(195 198 206 / 11%);
+  border: 2px solid rgb(195 198 206 / 22%);
   transition: 0.5s ease-out;
   overflow: visible;
 }
@@ -20,7 +22,7 @@
   place-content: center;
 }
 
-.card-button {
+.more-info-btn, .delete-btn, .edit-btn {
   transform: translate(-50%, 125%);
   width: 60%;
   border-radius: 1rem;
@@ -31,7 +33,7 @@
   padding: .5rem 1rem;
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 5rem;
   opacity: 0;
   transition: 0.3s ease-out;
   cursor: pointer;
@@ -46,7 +48,9 @@
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: pre-wrap;
+    width: 12rem;
+    word-break: break-all;
+    height: 6rem;
   }
 
   span {
@@ -75,15 +79,25 @@
 .text-title {
   font-size: 1.5em;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 13rem;
+  height: 1.8rem;
 }
 
 /*Hover*/
 .card:hover {
   border-color: #008bf8;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+
+  .card-details {
+    transition: .5s ease-out;
+    filter: blur(.3rem);
+  }
 }
 
-.card:hover .card-button {
+.card:hover .more-info-btn, .card:hover .delete-btn, .card:hover .edit-btn {
   transform: translate(-50%, 50%);
   opacity: 1;
 }
@@ -93,4 +107,14 @@
   height: 1px;
   opacity: 0.3;
   margin: 0;
+}
+
+.delete-btn {
+  background-color: $red;
+  bottom: 9rem;
+}
+
+.edit-btn {
+  background-color: $green;
+  bottom: 13rem;
 }

@@ -1,9 +1,9 @@
 import {create} from "zustand";
-import {IScenario} from "../types/scenario.type";
+import {IScenarioItem} from "../types/scenario-item.type";
 
 export interface ScenarioCreationStore {
-    scenarioItems: IScenario[];
-    setScenarioItems: (items: IScenario[]) => void;
+    scenarioItems: IScenarioItem[];
+    setScenarioItems: (items: IScenarioItem[]) => void;
     resetScenarioItems: () => void;
     isModalOpen: boolean;
     setIsModalOpen: (isOpen: boolean) => void;

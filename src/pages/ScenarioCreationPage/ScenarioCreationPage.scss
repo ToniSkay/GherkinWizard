@@ -1,3 +1,5 @@
+@import "styles/colors";
+
 .scenario-page {
     height: 100%;
     width: 100%;
@@ -44,21 +46,21 @@
   }
 
   .done-status {
-    color: #28A745;
+    color: $green;
     font-weight: bold;
 
     &.ant-radio-button-wrapper-checked {
-      background-color: #28A745;
-      border-color: #28A745;
+      background-color:$green;
+      border-color: $green;
 
       &::before {
-        background-color: #28A745;
+        background-color: $green;
       }
     }
 
     .ant-radio-button-checked, {
-        background-color: #28A745;
-        border-color: #28A745;
+        background-color: $green;
+        border-color: $green;
     }
   }
 }

@@ -3,7 +3,6 @@ import "./ScenarioStep.scss";
 import {scenarioTypeOptions} from "./constants/scenario-type-options";
 import {StepDeleteButton} from "./components/StepDeleteButton/StepDeleteButton";
 import {ScenarioItemType} from "../../../../enums/scenario-item-type.enum";
-import React from "react";
 import {PlusCircleFilled} from "@ant-design/icons";
 import {nanoid} from "nanoid";
 
@@ -17,7 +16,7 @@ export const ScenarioStep = ({form}: IProps) => {
             <Form form={form}>
                 <Form.List name="steps" initialValue={[]}>
                     {(fields, {add, remove}) => (
-                        <>
+                        <div className="steps-list">
                             {fields.map(({key, name, ...resetField}, index) => (
                                 <div key={key} className="scenario-item animate__animated animate__fadeInDown">
                                     <Form.Item
@@ -47,8 +46,8 @@ export const ScenarioStep = ({form}: IProps) => {
                                 </div>
                             ))}
 
-                            <PlusCircleFilled rev={nanoid()} onClick={() => add()} />
-                        </>
+                            <PlusCircleFilled className="plus-circle" rev={nanoid()} onClick={() => add()} />
+                        </div>
                     )}
                 </Form.List>
             </Form>

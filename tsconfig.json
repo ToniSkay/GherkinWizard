@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "sourceMap": true,
     "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "paths": {
+      "styles/*": ["src/styles/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
