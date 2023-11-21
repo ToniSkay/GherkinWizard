@@ -10,6 +10,7 @@ export const Scenario = ({name, description}: IProps) => {
     return (
         <Card className="scenario">
             <h2 className="scenario-name">{name}</h2>
+
             <p>{description}</p>
         </Card>
     )
