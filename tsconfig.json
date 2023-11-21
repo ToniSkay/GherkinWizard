@@ -9,7 +9,9 @@
       "esnext"
     ],
     "paths": {
-      "styles/*": ["src/styles/*"]
+      "common-components": ["common/components"],
+      "utils": ["common/utils"],
+      "styles/*": ["src/styles/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -26,6 +28,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src/**/*"
   ]
 }
