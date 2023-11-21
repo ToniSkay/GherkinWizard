@@ -2,31 +2,47 @@ import React from "react";
 import "./Scenario.scss";
 import {IScenario} from "../../../ScenarioCreationPage/types/scenario";
 import {ScenarioStatus} from "../../../../common/enums/scenario-status.enum";
+import {DeleteAction} from "common-components";
+import {from} from "rxjs";
+import axios from "axios";
+import {environment} from "../../../../environments";
 
-export const Scenario = ({ name, status, description, createdOn }: IScenario) => {
+interface IProps extends IScenario {
+    updateScenarios: () => void;
+    setLoading: (loading: boolean) => void;
+}
+
+export const Scenario = ({ name, status, description, createdOn, updateScenarios, id, setLoading }: IProps) => {
+    const onDelete = () => {
+        setLoading(true);
+
+        from(axios.delete(`${environment.baseApiUrl}delete-scenario/${id}`))
+            .subscribe(() => updateScenarios());
+    }
+
   return (
-    <div className="animate__animated animate__fadeInLeft card">
-      <div className="card-details">
-        <h2 className="text-title">{name}</h2>
+      <div className="animate__animated animate__fadeInLeft card">
+          <div className="card-details">
+              <h2 className="text-title">{name}</h2>
 
-        <hr className={"separator"} />
+              <hr className={"separator"} />
 
-        <div className="text-body">
-          {status === ScenarioStatus.Done ? (
-            <span className="indicator success">{ScenarioStatus.Done}</span>
-          ) : (
-            <span className="indicator in-progress">{ScenarioStatus.InProgress}</span>
-          )}
+              <div className="text-body">
+                  {status === ScenarioStatus.Done ? (
+                      <span className="indicator success">{ScenarioStatus.Done}</span>
+                  ) : (
+                      <span className="indicator in-progress">{ScenarioStatus.InProgress}</span>
+                  )}
 
-          <span className="date">{"Date: " + new Date(createdOn).toLocaleDateString()}</span>
+                  <span className="date">{"Date: " + new Date(createdOn).toLocaleDateString()}</span>
 
-          <p className="description">{description}</p>
-        </div>
+                  <p className="description">{description}</p>
+              </div>
+          </div>
+
+          <button className="edit-btn">Edit</button>
+          <DeleteAction onConfirm={onDelete}/>
+          <button className="more-info-btn">More info</button>
       </div>
-
-      <button className="edit-btn">Edit</button>
-      <button className="delete-btn">Delete</button>
-      <button className="more-info-btn">More info</button>
-    </div>
   );
 };
