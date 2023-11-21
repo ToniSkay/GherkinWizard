@@ -1,9 +1,7 @@
 import React from "react";
-import {Header as CustomHeader} from "./common/components/Header/Header";
 import "./index.scss";
-import {Layout} from "antd";
-import {Content, Header} from "antd/es/layout/layout";
 import axios from "axios";
+import {BrowserRouter} from "react-router-dom";
 import {AppRouter} from "./AppRouter";
 
 function App() {
@@ -16,15 +14,9 @@ function App() {
     }
 
   return (
-    <Layout>
-      <Header className={"header"} style={{ backgroundColor: "transparent" }}>
-        <CustomHeader></CustomHeader>
-      </Header>
-
-      <Content className={"main-content"}>
-          <AppRouter></AppRouter>
-      </Content>
-    </Layout>
+      <BrowserRouter>
+          <AppRouter/>
+      </BrowserRouter>
   );
 }
 
