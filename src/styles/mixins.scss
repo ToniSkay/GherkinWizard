@@ -1,0 +1,21 @@
+@mixin action-button($background-color) {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: .4rem;
+  border: none;
+  background-color: $background-color;
+  color: #fff;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 5rem;
+  opacity: 0;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+
+  :hover {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
+}
