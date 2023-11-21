@@ -6,7 +6,7 @@ import {environment} from "../../environments/index";
 import {useUserStore} from "../../common/stores/user-store";
 import {IScenario} from "../ScenarioCreationPage/types/scenario";
 import {useEffect, useState} from "react";
-import {Loader} from "../../common/components/Loader/Loader";
+import {Loader} from "common-components";
 
 export function MyScenariosPage() {
   const userId = useUserStore((state) => state.systemName);
@@ -14,7 +14,7 @@ export function MyScenariosPage() {
   const [scenarios, setScenarios] = useState<IScenario[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getScenarios = () => {
+  const updateScenarios = () => {
     setLoading(true);
 
     from(axios.get(`${environment.baseApiUrl}get-scenarios/${userId}`))
@@ -23,7 +23,7 @@ export function MyScenariosPage() {
   }
 
   useEffect(() => {
-    getScenarios();
+    updateScenarios();
   }, []);
 
   return (
@@ -31,7 +31,7 @@ export function MyScenariosPage() {
         {
           loading ? <Loader/> : <div className="all-tasks-container">
             {scenarios?.map((task) => (
-                <Scenario key={task.id} {...task}></Scenario>
+                <Scenario setLoading={setLoading} updateScenarios={updateScenarios} key={task.id} {...task}></Scenario>
             ))}
           </div>
         }
