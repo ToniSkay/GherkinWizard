@@ -3,7 +3,7 @@ import {ScenarioStatus} from "../../common/enums/scenario-status.enum";
 import "./ScenarioCreationPage.scss";
 import {Scenario} from "./components/Scenario/Scenario";
 import TextArea from "antd/es/input/TextArea";
-import {useState} from "react";
+import React, {FormEvent, useEffect, useState} from "react";
 import {ScenarioModal} from "./components/ScenarioModal/ScenarioModal";
 import {useFormItemConfigs} from "./hooks/use-form-items-config";
 import {nanoid} from "nanoid";
@@ -11,9 +11,12 @@ import {useUserStore} from "../../common/stores/user-store";
 import {finalize, from} from "rxjs";
 import axios from "axios";
 import {useScenarioCreationStore} from "./store/scenario-creation-store";
+import useConfirmBeforeLeaving from "../../common/hooks/useBlocker";
 
 export const ScenarioCreationPage = () => {
     const [isLoading, setLoading] = useState(false);
+    const [isFormChanged, setIsFormChanged] = useState(false);
+    useConfirmBeforeLeaving(isFormChanged);
 
     const {resetScenarioItems, setIsModalOpen, scenarioItems} = useScenarioCreationStore((state) => state);
     const user = useUserStore((state) => state);
@@ -21,6 +24,10 @@ export const ScenarioCreationPage = () => {
     const [form] = Form.useForm();
     const {scenarioFormConfig} = useFormItemConfigs();
     const [name, description, status] = scenarioFormConfig;
+
+    useEffect(() => {
+        reset();
+    }, []);
 
     const onSave = () => {
         setLoading(true);
@@ -40,7 +47,20 @@ export const ScenarioCreationPage = () => {
         })
     }
 
-    const showModal = () => setIsModalOpen(true)
+    const showModal = () => setIsModalOpen(true);
+
+    const handleFormChange = (event: FormEvent) => {
+        // const data = new FormData(event.currentTarget as HTMLFormElement);
+        // const values = Array.from(data.values());
+        // console.log(values)
+        // const changedValues = values.filter((value: string) => {
+        //     console.log(value)
+        //     return !!value;
+        // });
+
+        // console.log(!!changedValues.length)
+        setIsFormChanged(true);
+    }
 
     const reset = () => {
         form.resetFields();
@@ -56,7 +76,7 @@ export const ScenarioCreationPage = () => {
                     <Button loading={isLoading} onClick={onSave} type="primary">Save</Button>
                 </div>
 
-                <Form className="scenario-common-form" form={form}>
+                <Form className="scenario-common-form" form={form} onChange={handleFormChange}>
                     <Form.Item label="Name" {...name}>
                         <Input type="text" />
                     </Form.Item>

@@ -48,6 +48,7 @@ export const ScenarioModal = () => {
 
     return (
         <Modal
+            className='scenario-modal'
             okButtonProps={{ form: SCENARIO_FORM_ID, htmlType: 'submit' }}
             width={modalWidth}
             destroyOnClose
