@@ -5,6 +5,7 @@ import {UNSAFE_NavigationContext as NavigationContext} from "react-router-dom";
 import * as confirm from 'utils'
 
 type ExtendNavigator = Navigator & Pick<History, "block">;
+
 export function useBlocker(blocker: (tx: Transition) => void, when = true) {
     const { navigator } = useContext(NavigationContext);
 

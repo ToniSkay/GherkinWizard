@@ -3,7 +3,7 @@ import {ScenarioStatus} from "../../common/enums/scenario-status.enum";
 import "./ScenarioCreationPage.scss";
 import {Scenario} from "./components/Scenario/Scenario";
 import TextArea from "antd/es/input/TextArea";
-import React, {FormEvent, useEffect, useState} from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
 import {ScenarioModal} from "./components/ScenarioModal/ScenarioModal";
 import {useFormItemConfigs} from "./hooks/use-form-items-config";
 import {nanoid} from "nanoid";
@@ -12,101 +12,115 @@ import {finalize, from} from "rxjs";
 import axios from "axios";
 import {useScenarioCreationStore} from "./store/scenario-creation-store";
 import useConfirmBeforeLeaving from "../../common/hooks/useBlocker";
+import {environment} from "../../environments";
+import {useLocation, useParams} from "react-router-dom";
+import {LoadingWrapper} from "common";
 
 export const ScenarioCreationPage = () => {
-    const [isLoading, setLoading] = useState(false);
+    const { scenarioId } = useParams();
+    const location = useLocation();
+
+    const isEdit = location.pathname.includes('edit-scenario');
+
+    const [isCreateLoading, setCreateLoading] = useState(false);
+    const [isScenarioGetLoading, setScenarioGetLoading] = useState(false);
     const [isFormChanged, setIsFormChanged] = useState(false);
+
     useConfirmBeforeLeaving(isFormChanged);
 
-    const {resetScenarioItems, setIsModalOpen, scenarioItems} = useScenarioCreationStore((state) => state);
+    const {resetScenario, setIsModalOpen, setScenario, scenario} = useScenarioCreationStore((state) => state);
     const user = useUserStore((state) => state);
 
     const [form] = Form.useForm();
-    const {scenarioFormConfig} = useFormItemConfigs();
-    const [name, description, status] = scenarioFormConfig;
+    const [name, description, status] = useFormItemConfigs(scenario, isEdit);
 
-    useEffect(() => {
-        reset();
-    }, []);
+    useEffect(() => reset(), [isEdit]);
+    useEffect(() => reset, []);
+    useLayoutEffect(() => (scenarioId && getScenario()), []);
+
+    const getScenario = () => {
+        setScenarioGetLoading(true);
+
+        from(axios.get(`${environment.baseApiUrl}get-scenario/${scenarioId}`))
+            .pipe(finalize(() => setScenarioGetLoading(false)))
+            .subscribe(({data}) => setScenario(data))
+    }
 
     const onSave = () => {
-        setLoading(true);
+        const url = isEdit ? `update-scenario/${scenarioId}` : `create-scenario`;
+        const request = isEdit ? axios.put : axios.post;
+        setCreateLoading(true);
 
-        from(axios.post("https://localhost:7167/create-scenario", getRequestBody()))
-            .pipe(finalize(() => setLoading(false)))
+        from(request(`${environment.baseApiUrl}${url}`, getRequestBody()))
+            .pipe(finalize(() => setCreateLoading(false)))
             .subscribe(() => reset());
     }
 
     const getRequestBody = () => {
-        return ({
+        const editScenarioBody = {...scenario, ...form.getFieldsValue()};
+        const createScenarioBody = ({
             ...form.getFieldsValue(),
-            scenarioItems: scenarioItems,
+            scenarioItems: scenario.scenarioItems,
             systemName: nanoid(),
             createdByUserId: user.systemName,
             createdOn: new Date()
         })
+
+        return isEdit ? editScenarioBody : createScenarioBody;
     }
 
     const showModal = () => setIsModalOpen(true);
-
-    const handleFormChange = (event: FormEvent) => {
-        // const data = new FormData(event.currentTarget as HTMLFormElement);
-        // const values = Array.from(data.values());
-        // console.log(values)
-        // const changedValues = values.filter((value: string) => {
-        //     console.log(value)
-        //     return !!value;
-        // });
-
-        // console.log(!!changedValues.length)
-        setIsFormChanged(true);
-    }
+    const handleFormChange = () => setIsFormChanged(true)
 
     const reset = () => {
         form.resetFields();
-        resetScenarioItems();
+        resetScenario();
     }
 
     return (
-        <div className="scenario-page animate__animated animate__fadeInDown">
-            <Card className="scenario-common">
-                <div className="scenario-header">
-                    <h2>Common information</h2>
+        <LoadingWrapper isLoading={isScenarioGetLoading}>
+            <div className="scenario-page animate__animated animate__fadeInDown">
+                <Card className="scenario-common">
+                    <div className="scenario-header">
+                        <h2>Common information</h2>
 
-                    <Button loading={isLoading} onClick={onSave} type="primary">Save</Button>
-                </div>
+                        <Button loading={isCreateLoading} onClick={onSave} type="primary">Save</Button>
+                    </div>
 
-                <Form className="scenario-common-form" form={form} onChange={handleFormChange}>
-                    <Form.Item label="Name" {...name}>
-                        <Input type="text" />
-                    </Form.Item>
+                    <Form className="scenario-common-form" form={form} onChange={handleFormChange}>
+                        <Form.Item label="Name" {...name}>
+                            <Input type="text" />
+                        </Form.Item>
 
-                    <Form.Item label="Description" {...description}>
-                        <TextArea size="large"/>
-                    </Form.Item>
+                        <Form.Item label="Description" {...description}>
+                            <TextArea className="scenario-description" size="large"/>
+                        </Form.Item>
 
-                    <Form.Item label="Status" {...status}>
-                        <Radio.Group
-                            buttonStyle="solid"
-                        >
-                            <Radio.Button className="in-progress-status" value={ScenarioStatus.InProgress}>
-                                {ScenarioStatus.InProgress}
-                            </Radio.Button>
-                            <Radio.Button className="done-status" value={ScenarioStatus.Done}>
-                                {ScenarioStatus.Done}
-                            </Radio.Button>
-                        </Radio.Group>
-                    </Form.Item>
-                </Form>
-            </Card>
+                        <Form.Item label="Status" {...status}>
+                            <Radio.Group
+                                buttonStyle="solid"
+                            >
+                                <Radio.Button className="in-progress-status" value={ScenarioStatus.InProgress}>
+                                    {ScenarioStatus.InProgress}
+                                </Radio.Button>
+                                <Radio.Button className="done-status" value={ScenarioStatus.Done}>
+                                    {ScenarioStatus.Done}
+                                </Radio.Button>
+                            </Radio.Group>
+                        </Form.Item>
+                    </Form>
+                </Card>
 
-            <Button onClick={showModal} className="add-scenario-button">Add scenario</Button>
+                <Button onClick={showModal} className="add-scenario-button">Add scenario</Button>
 
-            {scenarioItems.map((item, index) => (
-                <Scenario key={index} name={item.name} description={item.description}></Scenario>
-            ))}
+                {scenario?.scenarioItems && (
+                    scenario.scenarioItems.map((item, index) => (
+                        <Scenario key={index} name={item.name} description={item.description}></Scenario>
+                    ))
+                )}
 
-            <ScenarioModal/>
-        </div>
+                <ScenarioModal/>
+            </div>
+        </LoadingWrapper>
     )
 }

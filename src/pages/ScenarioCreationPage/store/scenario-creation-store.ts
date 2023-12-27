@@ -1,18 +1,33 @@
 import {create} from "zustand";
 import {IScenarioItem} from "../types/scenario-item.type";
+import {IScenario} from "../types/scenario";
+import {ScenarioStatus} from "../../../common/enums/scenario-status.enum";
 
 export interface ScenarioCreationStore {
-    scenarioItems: IScenarioItem[];
+    scenario: IScenario;
     setScenarioItems: (items: IScenarioItem[]) => void;
-    resetScenarioItems: () => void;
+    setScenario: (items: IScenario) => void;
+    resetScenario: () => void;
     isModalOpen: boolean;
     setIsModalOpen: (isOpen: boolean) => void;
 }
 
-export const useScenarioCreationStore = create<ScenarioCreationStore>((set) => ({
+const initialScenario: IScenario = {
+    id: 0,
+    systemName: '',
+    name: '',
+    description: '',
+    status: ScenarioStatus.InProgress,
+    createdByUserId: '',
+    createdOn: null,
     scenarioItems: [],
-    setScenarioItems: (items) => set((state) => ({...state, scenarioItems: state.scenarioItems.concat(items)})),
-    resetScenarioItems: () => set((state) => ({...state, scenarioItems: []})),
+}
+
+export const useScenarioCreationStore = create<ScenarioCreationStore>((set) => ({
+    scenario: initialScenario,
     isModalOpen: false,
+    setScenarioItems: (items) => set((state) => ({...state, scenario: {...state.scenario, scenarioItems: (state.scenario.scenarioItems || []).concat(items)}})),
+    setScenario: (scenario) => set((state) => ({...state, scenario })),
+    resetScenario: () => set((state) => ({...state, scenario: {} as IScenario})),
     setIsModalOpen: (isOpen) => set((state) => ({...state, isModalOpen: isOpen})),
 }));
