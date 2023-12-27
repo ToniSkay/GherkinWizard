@@ -16,6 +16,7 @@ export const AppRouter = () => {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/registration" element={<RegistrationPage />} />
                     <Route path="/create-scenario" element={<ScenarioCreationPage />} />
+                    <Route path="/edit-scenario/:scenarioId" element={<ScenarioCreationPage />} />
                 </Route>
             </Routes>
     );

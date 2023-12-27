@@ -1,26 +1,25 @@
-import {useMemo} from "react";
-import {FormItemProps} from "antd";
 import {ScenarioStatus} from "../../../common/enums/scenario-status.enum";
 import {FormErrorMessage} from "../../../common/enums/form-error-message";
+import {IScenario} from "../types/scenario";
+import {useMemo} from "react";
+import {FormItemProps} from "antd";
 
-export const useFormItemConfigs = () => {
-    const scenarioFormConfig = useMemo<FormItemProps[]>(() => {
+export const useFormItemConfigs = (scenario: IScenario, isEdit: boolean) => {
+    return useMemo<FormItemProps[]>(() => {
         return [
             {
                 name: 'name',
-                initialValue: '',
-                rules: [{ required: true, message: FormErrorMessage.Required }]
+                initialValue: isEdit ? scenario.name : '',
+                rules: [{required: true, message: FormErrorMessage.Required}]
             },
             {
                 name: 'description',
-                initialValue: '',
+                initialValue: isEdit ? scenario.description : '',
             },
             {
                 name: 'status',
-                initialValue: ScenarioStatus.InProgress,
+                initialValue: isEdit ? scenario.status : ScenarioStatus.InProgress,
             },
         ];
-    }, []);
-
-    return { scenarioFormConfig };
+    }, [scenario.id, isEdit]);
 };

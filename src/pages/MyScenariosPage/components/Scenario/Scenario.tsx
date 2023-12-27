@@ -6,6 +6,7 @@ import {DeleteAction} from "common-components";
 import {from} from "rxjs";
 import axios from "axios";
 import {environment} from "../../../../environments";
+import {useNavigate} from "react-router-dom";
 
 interface IProps extends IScenario {
     updateScenarios: () => void;
@@ -13,11 +14,17 @@ interface IProps extends IScenario {
 }
 
 export const Scenario = ({ name, status, description, createdOn, updateScenarios, id, setLoading }: IProps) => {
+    const navigate = useNavigate();
+
     const onDelete = () => {
         setLoading(true);
 
         from(axios.delete(`${environment.baseApiUrl}delete-scenario/${id}`))
             .subscribe(() => updateScenarios());
+    }
+
+    const onEdit = () => {
+        navigate(`/edit-scenario/${id}`);
     }
 
   return (
@@ -40,7 +47,7 @@ export const Scenario = ({ name, status, description, createdOn, updateScenarios
               </div>
           </div>
 
-          <button className="edit-btn">Edit</button>
+          <button onClick={() => onEdit()} className="edit-btn">Edit</button>
           <DeleteAction onConfirm={onDelete}/>
           <button className="more-info-btn">More info</button>
       </div>
