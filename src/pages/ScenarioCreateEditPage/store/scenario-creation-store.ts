@@ -6,6 +6,7 @@ import {ScenarioStatus} from "../../../common/enums/scenario-status.enum";
 export interface ScenarioCreationStore {
     scenario: IScenario;
     setScenarioItems: (items: IScenarioItem[]) => void;
+    removeScenarioItem: (id: number) => void;
     setScenario: (items: IScenario) => void;
     resetScenario: () => void;
     isModalOpen: boolean;
@@ -26,7 +27,8 @@ const initialScenario: IScenario = {
 export const useScenarioCreationStore = create<ScenarioCreationStore>((set) => ({
     scenario: initialScenario,
     isModalOpen: false,
-    setScenarioItems: (items) => set((state) => ({...state, scenario: {...state.scenario, scenarioItems: (state.scenario.scenarioItems || []).concat(items)}})),
+    setScenarioItems: (items: IScenarioItem[]) => set((state) => ({...state, scenario: {...state.scenario, scenarioItems: (state.scenario.scenarioItems || []).concat(items)}})),
+    removeScenarioItem: (id: number) => set((state) => ({...state, scenario: {...state.scenario, scenarioItems: (state.scenario.scenarioItems.filter((item) => item.id !== id))}})),
     setScenario: (scenario) => set((state) => ({...state, scenario })),
     resetScenario: () => set((state) => ({...state, scenario: {} as IScenario})),
     setIsModalOpen: (isOpen) => set((state) => ({...state, isModalOpen: isOpen})),

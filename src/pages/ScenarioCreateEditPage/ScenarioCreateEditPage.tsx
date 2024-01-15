@@ -1,6 +1,6 @@
 import {Button, Card, Form, Input, Radio} from "antd";
 import {ScenarioStatus} from "../../common/enums/scenario-status.enum";
-import "./ScenarioCreationPage.scss";
+import "./ScenarioCreateEditPage.scss";
 import {Scenario} from "./components/Scenario/Scenario";
 import TextArea from "antd/es/input/TextArea";
 import {useEffect, useLayoutEffect, useState} from "react";
@@ -13,12 +13,13 @@ import axios from "axios";
 import {useScenarioCreationStore} from "./store/scenario-creation-store";
 import useConfirmBeforeLeaving from "../../common/hooks/useBlocker";
 import {environment} from "../../environments";
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {LoadingWrapper} from "common";
 
-export const ScenarioCreationPage = () => {
+export const ScenarioCreateEditPage = () => {
     const { scenarioId } = useParams();
     const location = useLocation();
+    const navigate = useNavigate();
 
     const isEdit = location.pathname.includes('edit-scenario');
 
@@ -28,13 +29,12 @@ export const ScenarioCreationPage = () => {
 
     useConfirmBeforeLeaving(isFormChanged);
 
-    const {resetScenario, setIsModalOpen, setScenario, scenario} = useScenarioCreationStore((state) => state);
+    const {resetScenario, setIsModalOpen, setScenario, scenario, removeScenarioItem} = useScenarioCreationStore((state) => state);
     const user = useUserStore((state) => state);
 
     const [form] = Form.useForm();
     const [name, description, status] = useFormItemConfigs(scenario, isEdit);
 
-    useEffect(() => reset(), [isEdit]);
     useEffect(() => reset, []);
     useLayoutEffect(() => (scenarioId && getScenario()), []);
 
@@ -53,7 +53,7 @@ export const ScenarioCreationPage = () => {
 
         from(request(`${environment.baseApiUrl}${url}`, getRequestBody()))
             .pipe(finalize(() => setCreateLoading(false)))
-            .subscribe(() => reset());
+            .subscribe(() => navigate('/all-tasks'));
     }
 
     const getRequestBody = () => {
@@ -113,11 +113,11 @@ export const ScenarioCreationPage = () => {
 
                 <Button onClick={showModal} className="add-scenario-button">Add scenario</Button>
 
-                {scenario?.scenarioItems && (
-                    scenario.scenarioItems.map((item, index) => (
-                        <Scenario key={index} name={item.name} description={item.description}></Scenario>
-                    ))
-                )}
+                    {scenario?.scenarioItems && (
+                        scenario.scenarioItems.map((item) => (
+                            <Scenario key={nanoid()} item={item} removeScenarioItem={removeScenarioItem}></Scenario>
+                        ))
+                    )}
 
                 <ScenarioModal/>
             </div>
