@@ -1,6 +1,6 @@
 import React from "react";
 import "./Scenario.scss";
-import {IScenario} from "../../../ScenarioCreationPage/types/scenario";
+import {IScenario} from "../../../ScenarioCreateEditPage/types/scenario";
 import {ScenarioStatus} from "../../../../common/enums/scenario-status.enum";
 import {DeleteAction} from "common-components";
 import {from} from "rxjs";
