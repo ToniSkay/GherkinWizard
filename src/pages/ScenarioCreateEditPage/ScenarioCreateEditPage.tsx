@@ -1,7 +1,7 @@
 import {Button, Card, Form, Input, Radio} from "antd";
 import {ScenarioStatus} from "../../common/enums/scenario-status.enum";
 import "./ScenarioCreateEditPage.scss";
-import {Scenario} from "./components/Scenario/Scenario";
+import {ScenarioItem} from "./components/ScenarioItem/ScenarioItem";
 import TextArea from "antd/es/input/TextArea";
 import {useEffect, useLayoutEffect, useState} from "react";
 import {ScenarioModal} from "./components/ScenarioModal/ScenarioModal";
@@ -115,7 +115,7 @@ export const ScenarioCreateEditPage = () => {
 
                     {scenario?.scenarioItems && (
                         scenario.scenarioItems.map((item) => (
-                            <Scenario key={nanoid()} item={item} removeScenarioItem={removeScenarioItem}></Scenario>
+                            <ScenarioItem key={nanoid()} item={item} removeScenarioItem={removeScenarioItem}></ScenarioItem>
                         ))
                     )}
 

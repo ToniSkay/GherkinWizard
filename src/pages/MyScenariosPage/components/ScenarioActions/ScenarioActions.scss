@@ -1,0 +1,16 @@
+@import "styles/colors";
+@import "styles/mixins";
+
+.delete-btn {
+  @include action-button($red);
+  bottom: 9rem;
+}
+
+.edit-btn {
+  @include action-button($green);
+  bottom: 13rem;
+}
+
+.more-info-btn {
+  @include action-button($blue);
+}

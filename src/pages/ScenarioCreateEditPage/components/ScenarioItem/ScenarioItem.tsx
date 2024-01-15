@@ -1,5 +1,5 @@
 import {Card} from "antd";
-import "./Scenario.scss";
+import "./ScenarioItem.scss";
 import {IScenarioItem} from "../../types/scenario-item.type";
 import {nanoid} from "nanoid";
 import {DeleteOutlined} from "@ant-design/icons";
@@ -10,7 +10,7 @@ interface IProps {
     removeScenarioItem: (id: number) => void;
 }
 
-export const Scenario = ({item, removeScenarioItem}: IProps) => {
+export const ScenarioItem = ({item, removeScenarioItem}: IProps) => {
     const {name, description, id} = item;
 
     const onDelete = () => confirm.remove(() => removeScenarioItem(id))

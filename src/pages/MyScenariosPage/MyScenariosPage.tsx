@@ -1,5 +1,5 @@
 import "./MyScenariosPage.scss";
-import {Scenario} from "./components/Scenario/Scenario";
+import {ScenarioCard} from "./components/ScenarioCard/ScenarioCard";
 import {finalize, from} from "rxjs";
 import axios, {AxiosResponse} from "axios";
 import {environment} from "../../environments/index";
@@ -22,19 +22,16 @@ export function MyScenariosPage() {
         .subscribe(({data}: AxiosResponse<IScenario[]>) => setScenarios(data));
   }
 
-  useEffect(() => {
-    updateScenarios();
-  }, []);
+  useEffect(() => updateScenarios(), []);
+
+  if (loading) return (<Loader/>);
 
   return (
-      <>
-        {
-          loading ? <Loader/> : <div className="all-tasks-container">
-            {scenarios?.map((task) => (
-                <Scenario setLoading={setLoading} updateScenarios={updateScenarios} key={task.id} {...task}></Scenario>
-            ))}
-          </div>
-        }
-      </>
+      <div className="all-tasks-container">
+        {scenarios?.map((task) => (
+            <ScenarioCard setLoading={setLoading} updateScenarios={updateScenarios} key={task.id} item={task}></ScenarioCard>
+        ))}
+      </div>
+
   );
 }
