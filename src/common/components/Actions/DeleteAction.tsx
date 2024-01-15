@@ -9,7 +9,6 @@ export const DeleteAction = ({onConfirm}: IProps) => {
 
     const onDelete = () => {
         confirm.remove(() => {
-            console.log("deleted");
             onConfirm();
         })
     }

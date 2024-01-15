@@ -35,6 +35,7 @@
   font-weight: 400;
   transition-duration: .3s;
 }
+
 /* hover effect on button width */
 .Btn:hover {
   width: 3.6rem;
@@ -47,11 +48,13 @@
   opacity: 0;
   transition-duration: .3s;
 }
+
 /* hover effect button's text */
 .Btn:hover .text {
   opacity: 1;
   transition-duration: .3s;
 }
+
 /* button click effect*/
 .Btn:active {
   transform: translate(2px ,2px);

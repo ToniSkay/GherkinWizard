@@ -4,7 +4,7 @@ import {finalize, from} from "rxjs";
 import axios, {AxiosResponse} from "axios";
 import {environment} from "../../environments/index";
 import {useUserStore} from "../../common/stores/user-store";
-import {IScenario} from "../ScenarioCreationPage/types/scenario";
+import {IScenario} from "../ScenarioCreateEditPage/types/scenario";
 import {useEffect, useState} from "react";
 import {Loader} from "common-components";
 
