@@ -22,19 +22,16 @@ export function MyScenariosPage() {
         .subscribe(({data}: AxiosResponse<IScenario[]>) => setScenarios(data));
   }
 
-  useEffect(() => {
-    updateScenarios();
-  }, []);
+  useEffect(() => updateScenarios(), []);
+
+  if (loading) return (<Loader/>);
 
   return (
-      <>
-        {
-          loading ? <Loader/> : <div className="all-tasks-container">
-            {scenarios?.map((task) => (
-                <ScenarioCard setLoading={setLoading} updateScenarios={updateScenarios} key={task.id} item={task}></ScenarioCard>
-            ))}
-          </div>
-        }
-      </>
+      <div className="all-tasks-container">
+        {scenarios?.map((task) => (
+            <ScenarioCard setLoading={setLoading} updateScenarios={updateScenarios} key={task.id} item={task}></ScenarioCard>
+        ))}
+      </div>
+
   );
 }
