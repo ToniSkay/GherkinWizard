@@ -22,27 +22,10 @@
   place-content: center;
 }
 
-.more-info-btn, .delete-btn, .edit-btn {
-  transform: translate(-50%, 125%);
-  width: 60%;
-  border-radius: .4rem;
-  border: none;
-  background-color: #008bf8;
-  color: #fff;
-  font-size: 1rem;
-  padding: .5rem 1rem;
-  position: absolute;
-  left: 50%;
-  bottom: 5rem;
-  opacity: 0;
-  transition: 0.3s ease-out;
-  cursor: pointer;
-}
-
-.text-body {
+.card-body {
   color: rgb(134, 134, 134);
 
-  .description {
+  .scenario-description {
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
@@ -64,7 +47,7 @@
     }
 
     &.in-progress {
-      background-color: #007BFF;
+      background-color: $blue;
     }
 
     color: #fff;
@@ -75,8 +58,7 @@
   }
 }
 
-/*Text*/
-.text-title {
+.card-title {
   font-size: 1.5em;
   font-weight: bold;
   white-space: nowrap;
@@ -86,20 +68,21 @@
   height: 1.8rem;
 }
 
-/*Hover*/
 .card:hover {
-  border-color: #008bf8;
+  border-color: $blue;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
 
   .card-details {
     transition: .5s ease-out;
     filter: blur(.3rem);
   }
-}
 
-.card:hover .more-info-btn, .card:hover .delete-btn, .card:hover .edit-btn {
-  transform: translate(-50%, 50%);
-  opacity: 1;
+  .more-info-btn,
+  .delete-btn,
+  .edit-btn {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
 }
 
 .separator {
@@ -107,14 +90,4 @@
   height: 1px;
   opacity: 0.3;
   margin: 0;
-}
-
-.delete-btn {
-  background-color: $red;
-  bottom: 9rem;
-}
-
-.edit-btn {
-  background-color: $green;
-  bottom: 13rem;
 }

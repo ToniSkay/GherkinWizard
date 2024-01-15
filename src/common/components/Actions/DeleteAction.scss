@@ -1,6 +1,0 @@
-@import "styles/colors";
-@import "styles/mixins";
-
-.delete-action {
-  @include action-button($red)
-}

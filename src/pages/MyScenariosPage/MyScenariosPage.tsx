@@ -1,5 +1,5 @@
 import "./MyScenariosPage.scss";
-import {Scenario} from "./components/Scenario/Scenario";
+import {ScenarioCard} from "./components/ScenarioCard/ScenarioCard";
 import {finalize, from} from "rxjs";
 import axios, {AxiosResponse} from "axios";
 import {environment} from "../../environments/index";
@@ -31,7 +31,7 @@ export function MyScenariosPage() {
         {
           loading ? <Loader/> : <div className="all-tasks-container">
             {scenarios?.map((task) => (
-                <Scenario setLoading={setLoading} updateScenarios={updateScenarios} key={task.id} {...task}></Scenario>
+                <ScenarioCard setLoading={setLoading} updateScenarios={updateScenarios} key={task.id} item={task}></ScenarioCard>
             ))}
           </div>
         }
