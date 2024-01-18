@@ -1,11 +1,12 @@
 import {create} from "zustand";
+import {IUser} from "../types/user.type";
 
 export interface UserStore {
   userName: string;
   systemName: string;
   isAdmin: boolean;
   token: string;
-  setUser: (user: { name: string; isAdmin: boolean; token: string }) => void;
+  setUser: (user: IUser) => void;
   logout: () => void;
 }
 
@@ -22,6 +23,7 @@ export const useUserStore = create<UserStore>((set) => ({
       userName: user.name,
       isAdmin: user.isAdmin,
       token: user.token,
+      systemName: user.id,
     })),
   logout: () =>
     set((state) => ({
