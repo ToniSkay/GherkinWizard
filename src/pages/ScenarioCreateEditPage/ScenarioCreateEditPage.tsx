@@ -36,6 +36,7 @@ export const ScenarioCreateEditPage = () => {
     const [name, description, status] = useFormItemConfigs(scenario, isEdit);
 
     useEffect(() => reset, []);
+    useEffect(() => reset(), [isEdit]);
     useLayoutEffect(() => (scenarioId && getScenario()), []);
 
     const getScenario = () => {
@@ -47,13 +48,15 @@ export const ScenarioCreateEditPage = () => {
     }
 
     const onSave = () => {
-        const url = isEdit ? `update-scenario/${scenarioId}` : `create-scenario`;
-        const request = isEdit ? axios.put : axios.post;
-        setCreateLoading(true);
+        form.validateFields().then(() => {
+            const url = isEdit ? `update-scenario/${scenarioId}` : `create-scenario`;
+            const request = isEdit ? axios.put : axios.post;
+            setCreateLoading(true);
 
-        from(request(`${environment.baseApiUrl}${url}`, getRequestBody()))
-            .pipe(finalize(() => setCreateLoading(false)))
-            .subscribe(() => navigate('/all-tasks'));
+            from(request(`${environment.baseApiUrl}${url}`, getRequestBody()))
+                .pipe(finalize(() => setCreateLoading(false)))
+                .subscribe(() => navigate('/all-tasks'));
+        })
     }
 
     const getRequestBody = () => {

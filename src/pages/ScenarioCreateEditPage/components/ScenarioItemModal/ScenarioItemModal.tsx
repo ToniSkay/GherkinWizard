@@ -22,8 +22,7 @@ export const ScenarioItemModal = () => {
     const { scenario, currentScenarioItemSystemName, setScenarioItems, isModalOpen, openScenarioItemModal, removeScenarioItem} = useScenarioCreationStore((state) => state);
 
     const isEdit = !!currentScenarioItemSystemName;
-    console.log(scenario.scenarioItems);
-    const scenarioItem: IScenarioItem = scenario.scenarioItems.find(({systemName}) => systemName === currentScenarioItemSystemName) || {} as IScenarioItem;
+    const scenarioItem: IScenarioItem = scenario.scenarioItems?.find(({systemName}) => systemName === currentScenarioItemSystemName) || {} as IScenarioItem;
 
     const { scenarioInfoConfig} = useFormItemConfigs(scenarioItem);
     const [stepsForm] = Form.useForm();
@@ -38,11 +37,13 @@ export const ScenarioItemModal = () => {
     };
 
     const onFinish = (values: any) => {
-        const steps = stepsForm.getFieldsValue().steps.map((step: IScenarioStep) => ({...step, systemName: nanoid()}));
+        Promise.all([form.validateFields(), stepsForm.validateFields()]).then(() => {
+            const steps = stepsForm.getFieldsValue().steps.map((step: IScenarioStep) => ({...step, systemName: nanoid()}));
 
-        isEdit ? update(values, steps) : create(values, steps)
+            isEdit ? update(values, steps) : create(values, steps)
 
-        openScenarioItemModal(false);
+            openScenarioItemModal(false);
+        })
     }
 
     const create = (values: any, steps: IScenarioStep[]) => {

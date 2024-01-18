@@ -5,7 +5,6 @@ import {FormErrorMessage} from "../../../../../common/enums/form-error-message";
 import {IScenarioItem} from "../../../types/scenario-item.type";
 
 export const useFormItemConfigs = ({name, status, description}: IScenarioItem) => {
-
     const scenarioInfoConfig = useMemo<FormItemProps[]>(() => {
         return [
             {
