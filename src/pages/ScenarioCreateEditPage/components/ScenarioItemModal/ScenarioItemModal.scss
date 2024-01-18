@@ -5,6 +5,11 @@
 .scenario-modal.ant-modal {
   width: 90rem;
 
+  .scenario-item-description {
+    font-size: 14px;
+    height: 10rem;
+  }
+
   .ant-modal-body {
     height: auto;
     display: block;

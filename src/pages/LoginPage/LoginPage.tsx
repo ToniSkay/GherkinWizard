@@ -36,7 +36,7 @@ export const LoginPage = () => {
 
   const attachToken = () => {
     axios.interceptors.request.use(function (config) {
-      config.headers.Authorization =  JSON.parse(localStorage.getItem("user")).token;
+      config.headers.Authorization =  JSON.parse(localStorage.getItem("user"))?.token;
 
       return config;
     });
