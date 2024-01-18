@@ -1,0 +1,27 @@
+@import "styles/colors";
+
+.in-progress-status {
+  color: $blue;
+  font-weight: 600;
+}
+
+.status-switcher {
+  .done-status {
+    color: $green;
+    font-weight: 600;
+
+    &.ant-radio-button-wrapper-checked {
+      background-color:$green;
+      border-color: $green;
+
+      &::before {
+        background-color: $green;
+      }
+    }
+
+    .ant-radio-button-checked, {
+      background-color: $green;
+      border-color: $green;
+    }
+  }
+}

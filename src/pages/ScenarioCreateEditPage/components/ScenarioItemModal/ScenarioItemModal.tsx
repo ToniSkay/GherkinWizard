@@ -1,6 +1,5 @@
-import {Form, Input, Modal, Radio} from "antd";
+import {Form, Input, Modal} from "antd";
 import TextArea from "antd/es/input/TextArea";
-import {ScenarioStatus} from "../../../../common/enums/scenario-status.enum";
 import "./ScenarioItemModal.scss";
 import {ScenarioStep} from "./components/ScenarioStep/ScenarioStep";
 import {useFormItemConfigs} from "./hooks/use-form-items-config";
@@ -8,6 +7,7 @@ import {customAlphabet, nanoid} from "nanoid";
 import {IScenarioStep} from "../../types/scenario-step.type";
 import {useScenarioCreationStore} from "../../store/scenario-creation-store";
 import {IScenarioItem} from "../../types/scenario-item.type";
+import {StatusSwitcher} from "../../../../common/components/StatusSwitcher/StatusSwitcher";
 
 const SCENARIO_FORM_ID = 'scenario-form-id';
 
@@ -71,19 +71,10 @@ export const ScenarioItemModal = () => {
                 </Form.Item>
 
                 <Form.Item label="Description" {...description}>
-                    <TextArea size="large"/>
+                    <TextArea className="scenario-item-description" size="large"/>
                 </Form.Item>
 
-                <Form.Item label="Status" {...status}>
-                    <Radio.Group buttonStyle="solid">
-                        <Radio.Button className="in-progress-status" value={ScenarioStatus.InProgress}>
-                            {ScenarioStatus.InProgress}
-                        </Radio.Button>
-                        <Radio.Button className="done-status" value={ScenarioStatus.Done}>
-                            {ScenarioStatus.Done}
-                        </Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
+                <StatusSwitcher statusFromItem={status}/>
 
                 <h2>Steps</h2>
             </Form>

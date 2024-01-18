@@ -1,5 +1,4 @@
-import {Button, Card, Form, Input, Radio} from "antd";
-import {ScenarioStatus} from "../../common/enums/scenario-status.enum";
+import {Button, Card, Form, Input} from "antd";
 import "./ScenarioCreateEditPage.scss";
 import {ScenarioItem} from "./components/ScenarioItem/ScenarioItem";
 import TextArea from "antd/es/input/TextArea";
@@ -15,6 +14,7 @@ import useConfirmBeforeLeaving from "../../common/hooks/useBlocker";
 import {environment} from "../../environments";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {LoadingWrapper} from "common";
+import {StatusSwitcher} from "../../common/components/StatusSwitcher/StatusSwitcher";
 
 export const ScenarioCreateEditPage = () => {
     const { scenarioId } = useParams();
@@ -96,18 +96,7 @@ export const ScenarioCreateEditPage = () => {
                             <TextArea className="scenario-description" size="large"/>
                         </Form.Item>
 
-                        <Form.Item label="Status" {...status}>
-                            <Radio.Group
-                                buttonStyle="solid"
-                            >
-                                <Radio.Button className="in-progress-status" value={ScenarioStatus.InProgress}>
-                                    {ScenarioStatus.InProgress}
-                                </Radio.Button>
-                                <Radio.Button className="done-status" value={ScenarioStatus.Done}>
-                                    {ScenarioStatus.Done}
-                                </Radio.Button>
-                            </Radio.Group>
-                        </Form.Item>
+                        <StatusSwitcher statusFromItem={status}/>
                     </Form>
                 </Card>
 

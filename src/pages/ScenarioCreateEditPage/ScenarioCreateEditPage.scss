@@ -45,28 +45,4 @@
   .ant-form-item-row {
     display: block;
   }
-
-  .in-progress-status {
-    color: #007BFF;
-    font-weight: bold;
-  }
-
-  .done-status {
-    color: $green;
-    font-weight: bold;
-
-    &.ant-radio-button-wrapper-checked {
-      background-color:$green;
-      border-color: $green;
-
-      &::before {
-        background-color: $green;
-      }
-    }
-
-    .ant-radio-button-checked, {
-        background-color: $green;
-        border-color: $green;
-    }
-  }
 }
