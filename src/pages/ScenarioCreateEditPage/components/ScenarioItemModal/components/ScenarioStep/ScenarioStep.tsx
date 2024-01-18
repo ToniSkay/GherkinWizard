@@ -5,16 +5,18 @@ import {StepDeleteButton} from "./components/StepDeleteButton/StepDeleteButton";
 import {ScenarioItemType} from "../../../../enums/scenario-item-type.enum";
 import {PlusCircleFilled} from "@ant-design/icons";
 import {nanoid} from "nanoid";
+import {IScenarioStep} from "../../../../types/scenario-step.type";
 
 interface IProps {
     form: any;
+    initialValue: IScenarioStep[];
 }
 
-export const ScenarioStep = ({form}: IProps) => {
+export const ScenarioStep = ({form, initialValue}: IProps) => {
     return (
         <div className="scenario-blocks">
             <Form form={form}>
-                <Form.List name="steps" initialValue={[]}>
+                <Form.List name="steps" initialValue={initialValue}>
                     {(fields, {add, remove}) => (
                         <div className="steps-list">
                             {fields.map(({key, name, ...resetField}, index) => (

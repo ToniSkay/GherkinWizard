@@ -4,7 +4,7 @@ import "./ScenarioCreateEditPage.scss";
 import {ScenarioItem} from "./components/ScenarioItem/ScenarioItem";
 import TextArea from "antd/es/input/TextArea";
 import {useEffect, useLayoutEffect, useState} from "react";
-import {ScenarioModal} from "./components/ScenarioModal/ScenarioModal";
+import {ScenarioItemModal} from "./components/ScenarioItemModal/ScenarioItemModal";
 import {useFormItemConfigs} from "./hooks/use-form-items-config";
 import {nanoid} from "nanoid";
 import {useUserStore} from "../../common/stores/user-store";
@@ -29,7 +29,7 @@ export const ScenarioCreateEditPage = () => {
 
     useConfirmBeforeLeaving(isFormChanged);
 
-    const {resetScenario, setIsModalOpen, setScenario, scenario, removeScenarioItem} = useScenarioCreationStore((state) => state);
+    const {resetScenario, openScenarioItemModal, setScenario, scenario, isModalOpen} = useScenarioCreationStore((state) => state);
     const user = useUserStore((state) => state);
 
     const [form] = Form.useForm();
@@ -69,7 +69,7 @@ export const ScenarioCreateEditPage = () => {
         return isEdit ? editScenarioBody : createScenarioBody;
     }
 
-    const showModal = () => setIsModalOpen(true);
+    const showModal = () => openScenarioItemModal(true);
     const handleFormChange = () => setIsFormChanged(true)
 
     const reset = () => {
@@ -113,13 +113,15 @@ export const ScenarioCreateEditPage = () => {
 
                 <Button onClick={showModal} className="add-scenario-button">Add scenario</Button>
 
-                    {scenario?.scenarioItems && (
-                        scenario.scenarioItems.map((item) => (
-                            <ScenarioItem key={nanoid()} item={item} removeScenarioItem={removeScenarioItem}></ScenarioItem>
-                        ))
-                    )}
+                {scenario?.scenarioItems && (
+                    scenario.scenarioItems.map((item) => (
+                        <ScenarioItem key={nanoid()} item={item}/>
+                    ))
+                )}
 
-                <ScenarioModal/>
+                {isModalOpen && (
+                    <ScenarioItemModal/>
+                )}
             </div>
         </LoadingWrapper>
     )
