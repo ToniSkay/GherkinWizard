@@ -10,7 +10,8 @@ export interface ScenarioCreationStore {
     setScenario: (items: IScenario) => void;
     resetScenario: () => void;
     isModalOpen: boolean;
-    setIsModalOpen: (isOpen: boolean) => void;
+    currentScenarioItemSystemName: string | null;
+    openScenarioItemModal: (isOpen: boolean, id?: string | null) => void;
 }
 
 const initialScenario: IScenario = {
@@ -27,9 +28,10 @@ const initialScenario: IScenario = {
 export const useScenarioCreationStore = create<ScenarioCreationStore>((set) => ({
     scenario: initialScenario,
     isModalOpen: false,
+    currentScenarioItemSystemName: null,
     setScenarioItems: (items: IScenarioItem[]) => set((state) => ({...state, scenario: {...state.scenario, scenarioItems: (state.scenario.scenarioItems || []).concat(items)}})),
     removeScenarioItem: (id: number) => set((state) => ({...state, scenario: {...state.scenario, scenarioItems: (state.scenario.scenarioItems.filter((item) => item.id !== id))}})),
     setScenario: (scenario) => set((state) => ({...state, scenario })),
     resetScenario: () => set((state) => ({...state, scenario: {} as IScenario})),
-    setIsModalOpen: (isOpen) => set((state) => ({...state, isModalOpen: isOpen})),
+    openScenarioItemModal: (isOpen, systemName = null) => set((state) => ({...state, isModalOpen: isOpen, currentScenarioItemSystemName: systemName})),
 }));
