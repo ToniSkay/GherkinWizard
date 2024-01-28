@@ -6,8 +6,12 @@ const path = require('path');
 export default {
   webpack: {
     alias: {
-      'common-components': path.resolve(__dirname, 'src/common/components'),
+      'components': path.resolve(__dirname, 'src/common/components'),
       'utils': path.resolve(__dirname, 'src/common/utils'),
+      'types': path.resolve(__dirname, 'src/common/types'),
+      'enums': path.resolve(__dirname, 'src/common/enums'),
+      'hooks': path.resolve(__dirname, 'src/common/hooks'),
+      'stores': path.resolve(__dirname, 'src/common/stores'),
     },
   },
   plugins: [

@@ -9,8 +9,12 @@
       "esnext"
     ],
     "paths": {
-      "common-components": ["common/components"],
+      "components": ["common/components"],
       "utils": ["common/utils"],
+      "enums": ["common/enums"],
+      "types": ["common/types"],
+      "stores": ["common/stores"],
+      "hooks": ["common/hooks"],
       "styles/*": ["src/styles/*"],
     },
     "allowJs": true,

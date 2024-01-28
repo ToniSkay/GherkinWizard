@@ -2,12 +2,12 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import {finalize, from} from "rxjs";
 import axios from "axios";
-import {environment} from "../../../../environments";
+import {environment} from "environments";
 import * as confirm from "../../../../common/utils/confirm";
+import {saveExportedFile} from "utils";
 import "./ScenarioActions.scss";
-import {saveExportedFile} from "../../../../common/utils/save-exported-file";
-import {FileType} from "../../../../common/enums/file-type";
-import {Loader} from "../../../../common/index";
+import {Loader} from "components";
+import {FileType} from "enums";
 
 interface IProps {
     id: number;

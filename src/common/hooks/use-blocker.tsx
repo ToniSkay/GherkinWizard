@@ -28,7 +28,7 @@ export function useBlocker(blocker: (tx: Transition) => void, when = true) {
     }, [navigator, blocker, when]);
 }
 
-export default function useConfirmBeforeLeaving(when = true) {
+export function useConfirmBeforeLeaving(when = true) {
     const blocker = useCallback((tx: Transition) => {
         confirm.leave(() => tx.retry())
     }, [when]);

@@ -1,4 +1,3 @@
-import React from "react";
 import "./index.scss";
 import axios from "axios";
 import {BrowserRouter} from "react-router-dom";

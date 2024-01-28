@@ -2,11 +2,11 @@ import "./MyScenariosPage.scss";
 import {ScenarioCard} from "./components/ScenarioCard/ScenarioCard";
 import {finalize, from} from "rxjs";
 import axios, {AxiosResponse} from "axios";
-import {environment} from "../../environments/index";
-import {useUserStore} from "../../common/stores/user-store";
+import {environment} from "environments";
+import {useUserStore} from "stores";
 import {IScenario} from "../ScenarioCreateEditPage/types/scenario";
 import {useEffect, useState} from "react";
-import {Loader} from "common-components";
+import {Loader} from "components";
 
 export function MyScenariosPage() {
   const userId = useUserStore((state) => state.systemName);
@@ -27,7 +27,7 @@ export function MyScenariosPage() {
   if (pageLoading) return (<Loader/>);
 
   return (
-      <div className="all-tasks-container">
+      <div className="my-scenarios-container">
         {scenarios?.map((task) => (
             <ScenarioCard setPageLoading={setPageLoading} updateScenarios={updateScenarios} key={task.id} item={task}></ScenarioCard>
         ))}

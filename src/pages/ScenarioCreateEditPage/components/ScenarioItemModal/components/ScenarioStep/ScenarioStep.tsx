@@ -6,7 +6,7 @@ import {ScenarioItemType} from "../../../../enums/scenario-item-type.enum";
 import {PlusCircleFilled} from "@ant-design/icons";
 import {nanoid} from "nanoid";
 import {IScenarioStep} from "../../../../types/scenario-step.type";
-import {FormErrorMessage} from "../../../../../../common/enums/form-error-message";
+import {FormErrorMessage} from "enums";
 
 interface IProps {
     form: any;

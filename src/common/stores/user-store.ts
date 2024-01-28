@@ -1,5 +1,5 @@
 import {create} from "zustand";
-import {IUser} from "../types/user.type";
+import {IUser} from "types";
 
 export interface UserStore {
   userName: string;

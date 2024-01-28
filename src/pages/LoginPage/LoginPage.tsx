@@ -4,8 +4,9 @@ import {NavLink, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useState} from "react";
 import {finalize, from} from "rxjs";
-import {useUserStore} from "../../common/stores/user-store";
-import {environment} from "../../environments/index";
+import {useUserStore} from "stores";
+import {environment} from "environments";
+import {Path} from "../../common/index";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ export const LoginPage = () => {
           </Button>
           <p>
             No account?{" "}
-            <NavLink title="Registration" to={"/registration"}>
+            <NavLink title="Registration" to={Path.Registration}>
               Go to registration!
             </NavLink>
           </p>
