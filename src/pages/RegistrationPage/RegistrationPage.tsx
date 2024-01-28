@@ -32,6 +32,7 @@ export const RegistrationPage = () => {
       <Card className={"registration-card animate__animated animate__flipInX"}>
         <p className={"backToLogin"}>
           <ArrowLeftOutlined rev={nanoid()} />
+
           <NavigationLink link={Path.Login} name={"Back to login"} />
         </p>
 
