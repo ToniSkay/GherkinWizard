@@ -12,26 +12,25 @@ export function MyScenariosPage() {
   const userId = useUserStore((state) => state.systemName);
 
   const [scenarios, setScenarios] = useState<IScenario[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [pageLoading, setPageLoading] = useState<boolean>(false);
 
   const updateScenarios = () => {
-    setLoading(true);
+    setPageLoading(true);
 
     from(axios.get(`${environment.baseApiUrl}get-scenarios/${userId}`))
-        .pipe(finalize(() => setLoading(false)))
+        .pipe(finalize(() => setPageLoading(false)))
         .subscribe(({data}: AxiosResponse<IScenario[]>) => setScenarios(data));
   }
 
   useEffect(() => updateScenarios(), []);
 
-  if (loading) return (<Loader/>);
+  if (pageLoading) return (<Loader/>);
 
   return (
       <div className="all-tasks-container">
         {scenarios?.map((task) => (
-            <ScenarioCard setLoading={setLoading} updateScenarios={updateScenarios} key={task.id} item={task}></ScenarioCard>
+            <ScenarioCard setPageLoading={setPageLoading} updateScenarios={updateScenarios} key={task.id} item={task}></ScenarioCard>
         ))}
       </div>
-
   );
 }
