@@ -1,7 +1,7 @@
 import {create} from "zustand";
 import {IScenarioItem} from "../types/scenario-item.type";
 import {IScenario} from "../types/scenario";
-import {ScenarioStatus} from "../../../common/enums/scenario-status.enum";
+import {ScenarioStatus} from "enums";
 
 export interface ScenarioCreationStore {
     scenario: IScenario;

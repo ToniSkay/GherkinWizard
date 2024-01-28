@@ -6,15 +6,15 @@ import {useEffect, useLayoutEffect, useState} from "react";
 import {ScenarioItemModal} from "./components/ScenarioItemModal/ScenarioItemModal";
 import {useFormItemConfigs} from "./hooks/use-form-items-config";
 import {nanoid} from "nanoid";
-import {useUserStore} from "../../common/stores/user-store";
+import {useUserStore} from "stores";
 import {finalize, from} from "rxjs";
 import axios from "axios";
 import {useScenarioCreationStore} from "./store/scenario-creation-store";
-import useConfirmBeforeLeaving from "../../common/hooks/useBlocker";
-import {environment} from "../../environments";
+import {useConfirmBeforeLeaving} from "hooks";
+import {environment} from "environments";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
-import {LoadingWrapper} from "common";
-import {StatusSwitcher} from "../../common/components/StatusSwitcher/StatusSwitcher";
+import {LoadingWrapper, StatusSwitcher} from "components";
+import {Path} from "enums";
 
 export const ScenarioCreateEditPage = () => {
     const { scenarioId } = useParams();
@@ -55,7 +55,7 @@ export const ScenarioCreateEditPage = () => {
 
             from(request(`${environment.baseApiUrl}${url}`, getRequestBody()))
                 .pipe(finalize(() => setCreateLoading(false)))
-                .subscribe(() => navigate('/all-tasks'));
+                .subscribe(() => navigate(Path.MyScenarios));
         })
     }
 

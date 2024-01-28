@@ -1,7 +1,6 @@
 import {useMemo} from "react";
 import {FormItemProps} from "antd";
-import {ScenarioStatus} from "../../../../../common/enums/scenario-status.enum";
-import {FormErrorMessage} from "../../../../../common/enums/form-error-message";
+import {FormErrorMessage, ScenarioStatus} from "enums";
 import {IScenarioItem} from "../../../types/scenario-item.type";
 
 export const useFormItemConfigs = ({name, status, description}: IScenarioItem) => {

@@ -1,13 +1,14 @@
 import {ArrowLeftOutlined} from "@ant-design/icons";
 import {Button, Card, Input} from "antd";
 import "./RegistrationPage.scss";
-import {NavigationLink} from "../../common/components/Navigation/components/NavigationLink/NavigationLink";
+import {NavigationLink} from "components";
 import axios from "axios";
 import {finalize, from} from "rxjs";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuidv4} from "uuid";
 import {nanoid} from "nanoid";
+import {Path} from "../../common/index";
 
 export const RegistrationPage = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export const RegistrationPage = () => {
     from(axios.post("https://localhost:7167/create-user", data))
       .pipe(finalize(() => setLoading(false)))
       .subscribe(() => {
-        navigate("/login");
+        navigate(Path.Login);
       });
   };
 
@@ -33,7 +34,7 @@ export const RegistrationPage = () => {
       <Card className={"registration-card animate__animated animate__flipInX"}>
         <p className={"backToLogin"}>
           <ArrowLeftOutlined rev={nanoid()} />
-          <NavigationLink link={"/login"} name={"Back to login"} />
+          <NavigationLink link={Path.Login} name={"Back to login"} />
         </p>
 
         <div className="form">

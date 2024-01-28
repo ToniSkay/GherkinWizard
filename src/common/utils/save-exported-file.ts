@@ -1,4 +1,4 @@
-import {FileType} from "../enums/file-type";
+import {FileType} from "../enums";
 
 export const saveExportedFile = (fileName: string, fileType: FileType, data: string) => {
     const element = document.createElement("a");

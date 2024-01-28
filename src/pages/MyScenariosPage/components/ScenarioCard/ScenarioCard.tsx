@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./ScenarioCard.scss";
 import {IScenario} from "../../../ScenarioCreateEditPage/types/scenario";
-import {ScenarioStatus} from "../../../../common/enums/scenario-status.enum";
+import {ScenarioStatus} from "enums";
 import ScenarioActions from "../ScenarioActions/ScenarioActions";
 
 interface IProps {

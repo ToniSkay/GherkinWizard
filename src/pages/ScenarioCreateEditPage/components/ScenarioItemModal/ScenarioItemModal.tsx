@@ -7,13 +7,9 @@ import {customAlphabet, nanoid} from "nanoid";
 import {IScenarioStep} from "../../types/scenario-step.type";
 import {useScenarioCreationStore} from "../../store/scenario-creation-store";
 import {IScenarioItem} from "../../types/scenario-item.type";
-import {StatusSwitcher} from "../../../../common/components/StatusSwitcher/StatusSwitcher";
+import {StatusSwitcher} from "components";
 
 const SCENARIO_FORM_ID = 'scenario-form-id';
-
-interface IProps {
-
-}
 
 export const ScenarioItemModal = () => {
     const modalWidth = '90rem';

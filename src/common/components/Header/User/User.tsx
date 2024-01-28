@@ -5,6 +5,7 @@ import {useState} from "react";
 import {useUserStore} from "../../../stores/user-store";
 import {useNavigate} from "react-router-dom";
 import {nanoid} from "nanoid";
+import {Path} from "../../../enums/index";
 
 interface IProps {
   userName: string;
@@ -19,7 +20,7 @@ export const User = ({ userName }: IProps) => {
   const onLogoutClick = () => {
     logout();
     localStorage.removeItem("user");
-    navigate("/login");
+    navigate(Path.Login);
   };
 
   const handleOpenChange = (newOpen: boolean) => {

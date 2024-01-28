@@ -1,5 +1,4 @@
-import {ScenarioStatus} from "../../../common/enums/scenario-status.enum";
-import {FormErrorMessage} from "../../../common/enums/form-error-message";
+import {FormErrorMessage, ScenarioStatus} from "enums";
 import {IScenario} from "../types/scenario";
 import {FormItemProps} from "antd";
 import {useMemo} from "react";
