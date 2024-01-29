@@ -51,6 +51,7 @@ export const ScenarioCreateEditPage = () => {
         form.validateFields().then(() => {
             const url = isEdit ? `update-scenario/${scenarioId}` : `create-scenario`;
             const request = isEdit ? axios.put : axios.post;
+            setIsFormChanged(false);
             setCreateLoading(true);
 
             from(request(`${environment.baseApiUrl}${url}`, getRequestBody()))
