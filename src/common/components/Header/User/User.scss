@@ -5,6 +5,17 @@
   height: 100%;
   cursor: pointer;
 
+  .ant-avatar-icon {
+    font-size: 6px;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .anticon {
+    vertical-align: 1.3rem;
+    font-size: 1.5rem;
+  }
+
   .user-name {
     padding-left: 0.5rem;
     font-size: 1.1rem;

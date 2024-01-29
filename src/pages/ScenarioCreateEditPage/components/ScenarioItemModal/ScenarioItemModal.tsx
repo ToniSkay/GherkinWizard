@@ -73,7 +73,7 @@ export const ScenarioItemModal = () => {
 
                 <StatusSwitcher statusFromItem={status}/>
 
-                <h2>Steps</h2>
+                <h2 className="steps-header">Steps</h2>
             </Form>
 
             <ScenarioStep initialValue={isEdit ? scenarioItem.steps : []} form={stepsForm}></ScenarioStep>
