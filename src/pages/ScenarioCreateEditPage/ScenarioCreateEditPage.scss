@@ -54,6 +54,10 @@
       text-align: center;
       line-height: 1.1rem;
       padding: 0.1rem 1rem;
+
+      &.ant-btn-loading {
+        width: 6rem;
+      }
     }
   }
 
