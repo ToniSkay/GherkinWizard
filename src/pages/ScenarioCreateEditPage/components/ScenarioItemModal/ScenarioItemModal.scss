@@ -12,8 +12,18 @@
     height: 10rem;
   }
 
-  .ant-modal-title {
+  .steps-header, .ant-modal-title {
     font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .ant-modal-footer .ant-btn {
+    width: 5rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+    line-height: 1.1rem;
+    padding: 0.1rem 1rem;
   }
 
   .ant-form-item {

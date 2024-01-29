@@ -41,8 +41,9 @@ export const User = ({ userName }: IProps) => {
     >
       <div className="user-container animate__animated animate__fadeInRight">
         <div className="user-avatar">
-          <Avatar size={"small"} shape="square" icon={<UserOutlined rev={nanoid()} />} />
+          <Avatar shape="square" icon={<UserOutlined width="1rem" height="1rem" rev={nanoid()} />} />
         </div>
+
         <div className="user-name">{userName}</div>
       </div>
     </Popover>
