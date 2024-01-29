@@ -76,7 +76,7 @@ export const LoginPage = () => {
           >
             Sign In
           </Button>
-          <p>
+          <p className="link-to-registration">
             No account?{" "}
             <NavLink title="Registration" to={Path.Registration}>
               Go to registration!

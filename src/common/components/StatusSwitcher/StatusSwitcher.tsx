@@ -1,5 +1,5 @@
 import {Form, FormItemProps, Radio} from "antd";
-import {ScenarioStatus} from "../../enums/scenario-status.enum";
+import {ScenarioStatus} from "enums";
 import "./StatusSwitcher.scss";
 
 interface IProps {
@@ -8,8 +8,8 @@ interface IProps {
 
 export const StatusSwitcher = ({statusFromItem}: IProps) => {
     return (
-        <Form.Item className="status-switcher" label="Status" {...statusFromItem}>
-            <Radio.Group buttonStyle="solid">
+        <Form.Item label="Status" {...statusFromItem}>
+            <Radio.Group className="status-switcher" buttonStyle="solid">
                 <Radio.Button className="in-progress-status" value={ScenarioStatus.InProgress}>
                     {ScenarioStatus.InProgress}
                 </Radio.Button>

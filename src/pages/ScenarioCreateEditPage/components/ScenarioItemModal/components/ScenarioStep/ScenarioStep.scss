@@ -2,8 +2,22 @@
   display: flex;
   flex-flow: row nowrap;
 
-  .ant-select .ant-select-selector {
-    width: 5rem;
+  .ant-select {
+    .ant-select-arrow {
+      font-size: 1rem;
+      inset-inline-end: 1rem;
+    }
+
+    .ant-select-selector {
+      width: 6rem;
+      height: 3rem;
+      text-align: center;
+      padding: 0;
+    }
+
+    .ant-select-selection-item {
+      padding-inline-end: 1rem;
+    }
   }
 
   .input-description {
@@ -12,6 +26,11 @@
 
   .select-type {
     margin-right: .3rem;
+
+    .ant-select-selection-item {
+      font-size: 1.1rem;
+      line-height: 3rem;
+    }
   }
 
   .step-form-item {
@@ -57,4 +76,10 @@
   opacity: 0;
   height: 0;
   transition: opacity 300ms, height 700ms;
+}
+
+.ant-select-dropdown .ant-select-item {
+  font-size: 1rem;
+  line-height: 2rem;
+  min-height: .5rem;
 }

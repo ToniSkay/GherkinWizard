@@ -1,18 +1,19 @@
 @import "styles/colors";
 
-.Btn {
+.btn {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   width: 2rem;
   height: 2rem;
+  margin-top: .5rem;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition-duration: .3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  box-shadow: .16rem .16rem .8rem rgba(0, 0, 0, 0.199);
   background-color: $red;
   color: white;
 }
@@ -21,6 +22,7 @@
 .sign {
   width: 100%;
   transition-duration: .3s;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,31 +33,31 @@
   position: absolute;
   opacity: 0;
   color: white;
-  font-size: 1em;
+  font-size: .8rem;
   font-weight: 400;
   transition-duration: .3s;
 }
 
 /* hover effect on button width */
-.Btn:hover {
-  width: 3.6rem;
-  border-radius: 40px;
+.btn:hover {
+  width: 3.7rem;
+  border-radius: 3.3rem;
   transition-duration: .3s;
 }
 
-.Btn:hover .sign {
+.btn:hover .sign {
   width: 30%;
   opacity: 0;
   transition-duration: .3s;
 }
 
 /* hover effect button's text */
-.Btn:hover .text {
+.btn:hover .text {
   opacity: 1;
   transition-duration: .3s;
 }
 
 /* button click effect*/
-.Btn:active {
-  transform: translate(2px ,2px);
+.btn:active {
+  transform: translate(.16rem, .16rem);
 }
