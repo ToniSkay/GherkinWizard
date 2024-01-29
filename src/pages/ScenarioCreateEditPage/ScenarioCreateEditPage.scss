@@ -12,34 +12,54 @@
     .add-scenario-button {
       margin-top: 1rem;
       margin-bottom: 1rem;
-      width: 50%;
-      height: 50px;
+      width: 80rem;
+      height: 3.5rem;
       border: none;
       background-color: rgba(255, 255, 255, 0.1);
       box-shadow: 0 0 .5rem .5rem rgb(178 170 170 / 10%);
+      font-size: 1.1rem;
     }
 }
 
 .scenario-common {
   height: fit-content;
   max-height: fit-content;
-  width: 50%;
-  margin-right: 10%;
-  margin-left: 10%;
-  margin-top: 2%;
+  width: 80rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
+  margin-top: 3rem;
   background-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 .5rem .5rem rgb(178 170 170 / 10%);
 
+  .ant-form-item {
+    margin-bottom: 1.1rem;
+
+    .ant-form-item-label label {
+      font-size: 1.1rem;
+    }
+  }
+
   .scenario-header {
+    font-size: 1.1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 5rem;
+
+    .save-scenario-btn {
+      width: 5rem;
+      height: 2.3rem;
+      font-size: 1.1rem;
+      text-align: center;
+      line-height: 1.1rem;
+      padding: 0.1rem 1rem;
+    }
   }
 
   .scenario-description {
-    font-size: 14px;
-    height: 10rem;
+    font-size: 1.1rem;
+    height: 7rem;
   }
 
   .ant-form-item-row {

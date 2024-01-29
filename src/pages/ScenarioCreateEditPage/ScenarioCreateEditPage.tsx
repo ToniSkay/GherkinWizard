@@ -87,7 +87,7 @@ export const ScenarioCreateEditPage = () => {
                     <div className="scenario-header">
                         <h2>Common information</h2>
 
-                        <Button loading={isCreateLoading} onClick={onSave} type="primary">Save</Button>
+                        <Button className="save-scenario-btn" loading={isCreateLoading} onClick={onSave} type="primary">Save</Button>
                     </div>
 
                     <Form className="scenario-common-form" form={form} onChange={handleFormChange}>

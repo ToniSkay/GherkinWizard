@@ -9,7 +9,7 @@ interface IProps {
 
 export const StepDeleteButton = ({removeStep, index}: IProps) => {
     return (
-        <button type="button" onClick={() => removeStep(index)} className="Btn scenario-delete-button">
+        <button type="button" onClick={() => removeStep(index)} className="btn scenario-delete-button">
 
             <div className="sign">
                 <DeleteOutlined rev={nanoid()}/>

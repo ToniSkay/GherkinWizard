@@ -2,7 +2,7 @@ import React from "react";
 import {Navigation} from "../Navigation/Navigation";
 import "./Header.scss";
 import {Login} from "./Login/Login";
-import {useUserStore} from "../../stores/user-store";
+import {useUserStore} from "stores";
 import {User} from "./User/User";
 
 export function Header() {
